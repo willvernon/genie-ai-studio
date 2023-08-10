@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.23.2",
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.4.4",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
@@ -17,8 +20,10 @@
     "clsx": "^2.0.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
+    "google": "link:next/fonts/google",
     "lucide-react": "^0.263.0",
     "next": "13.4.12",
+    "next-google-fonts": "^2.2.0",
     "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",
