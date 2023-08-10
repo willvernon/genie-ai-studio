@@ -1,12 +1,11 @@
 // prettier.config.js
 module.exports = {
-	trailingComma: 'es5',
-	tabWidth: 2,
-	semi: false,
-	singleQuote: true,
-	bracketSpacing: true,
-	endOfLine: 'lf',
-	printWidth: 80,
-	useTabs: true,
+  arrowParens: 'avoid',
+  singleQuote: true,
+  bracketSpacing: true,
+  endOfLine: 'lf',
+  semi: false,
+  tabWidth: 2,
+  trailingComma: 'none',
 	plugins: [require('prettier-plugin-tailwindcss')],
 }
