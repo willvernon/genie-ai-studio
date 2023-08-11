@@ -91,7 +91,7 @@ const Sidebar = () => {
 									: 'text-zinc-400 bg-transparent'
 							)}
 						>
-							<div className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-slate-700 cursor-pointer">
+							<div className="flex items-center space-x-3 px-3 py-2 rounded-md  cursor-pointer">
 								<route.icon className={cn('w-5 h-5 mr-3', route.color)} />
 								{route.label}
 							</div>
