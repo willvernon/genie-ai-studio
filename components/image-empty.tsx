@@ -12,11 +12,11 @@ export const Empty = ({ label }: EmptyProps) => {
 					width={250}
 					height={250}
 					alt="empty"
-					src="/code.png"
+					src="/astro.png"
 					quality={100}
 				/>
 			</div>
-			<p className="text-muted-foreground text-sm text-center">{label}</p>
+			<p className=" mt-8 text-muted-foreground text-sm text-center">{label}</p>
 		</div>
 	)
 }

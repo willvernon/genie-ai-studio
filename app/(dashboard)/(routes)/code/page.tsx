@@ -61,7 +61,7 @@ function CodePage() {
 		<div>
 			<Heading
 				title="Code Generation"
-				description="This is the conversation page"
+				description="This is the Coding page"
 				icon={Code}
 				iconColor="text-sky-500"
 				bgColor="bg-sky-500/40"
