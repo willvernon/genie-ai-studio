@@ -98,7 +98,7 @@ function ConversationPage() {
 				</div>
 				<div className="space-y-4 mt-4">
 					{isLoading && (
-						<div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+						<div className="p-8 rounded-lg w-full flex items-center justify-center bg-black/20">
 							<Loader />
 						</div>
 					)}
@@ -112,12 +112,12 @@ function ConversationPage() {
 								className={cn(
 									'p-8 w-full flex items-start gap-x-8 rounded-lg',
 									message.role === 'user'
-										? 'bg-white border border-black/10'
-										: 'bg-muted'
+										? 'bg-white border border-black/30'
+										: 'bg-black/20'
 								)}
 							>
 								{message.role === 'user' ? <UserAvatar /> : <BotAvatar />}
-								<p className="text-sm">{message.content}</p>
+								<p className="text-sm my-auto">{message.content}</p>
 							</div>
 						))}
 					</div>
