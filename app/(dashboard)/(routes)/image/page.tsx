@@ -15,7 +15,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { amountOptions, formSchema, resolutionOptions } from './constants'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Empty } from '@/components/image-empty'
+import { ImageEmpty } from '@/components/empty/image-empty'
 import { Loader } from '@/components/loader'
 import { cn } from '@/lib/utils'
 import {
@@ -169,7 +169,7 @@ function ImagePage() {
 						</div>
 					)}
 					{images.length === 0 && !isLoading && (
-						<Empty label="No images generation started." />
+						<ImageEmpty label="No images generation started." />
 					)}
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
 						{images.map((src) => (
