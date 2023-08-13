@@ -75,8 +75,8 @@ const Sidebar = () => {
 					<div className="relative w-8 h-10 mr-4">
 						<Image fill alt="Logo" src={logo} />
 					</div>
-					<h1 className={cn('text-2xl font-bold ', montserrat.className)}>
-						AI Genie
+					<h1 className={cn('text-xl px-2 font-bold ', montserrat.className)}>
+						Genie AI Studio
 					</h1>
 				</Link>
 				<div className="space-y-1">
