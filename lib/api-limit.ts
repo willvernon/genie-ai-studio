@@ -2,6 +2,7 @@ import { auth } from '@clerk/nextjs'
 
 import prismadb from '@/lib/prismadb'
 import { MAX_FREE_COUNTS } from '@/constants'
+import { userAgentFromString } from 'next/server'
 
 export const incrementApiLimit = async () => {
 	const { userId } = auth()
