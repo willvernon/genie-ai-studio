@@ -6,7 +6,7 @@ import { Montserrat } from 'next/font/google'
 import { usePathname } from 'next/navigation'
 
 import { FreeCounter } from '@/components/free-counter'
-import logo from '@/public/logo.png'
+import logo from '../../public/logo.png'
 import { cn } from '@/lib/utils'
 import {
 	Code,
