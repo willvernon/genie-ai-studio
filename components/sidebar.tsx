@@ -60,11 +60,11 @@ const routes = [
 		href: '/code',
 		color: 'text-sky-400',
 	},
-	{
-		label: 'Settings',
-		icon: Settings,
-		href: '/settings',
-	},
+	// {
+	// 	label: 'Settings',
+	// 	icon: Settings,
+	// 	href: '/settings',
+	// },
 ]
 
 interface SidebarProps {

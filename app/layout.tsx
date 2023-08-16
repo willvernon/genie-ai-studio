@@ -47,8 +47,8 @@ export default function RootLayout({
 					graphik.variable
 				)}
 			>
-				<body className="antialiased max-w-5xl mb-40 flex flex-col md:flex-row my-4 mx-auto">
-					<main className="flex-auto min-w-0 m-4 mt-6 flex flex-col px-2 md:px-0">
+				<body className="antialiased max-w-5xl mb-40 flex flex-col md:flex-row my-4">
+					<main className="flex-auto min-w-0  mt-6 flex flex-col px-2 md:px-0">
 						<NavBar />
 						<ModalPorvider />
 						{children}
