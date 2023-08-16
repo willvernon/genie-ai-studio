@@ -1,7 +1,15 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { ArrowRight, Code, ImageIcon, MessageSquare, Music, Settings, VideoIcon } from 'lucide-react'
+import {
+	ArrowRight,
+	Code,
+	ImageIcon,
+	MessageSquare,
+	Music,
+	Settings,
+	VideoIcon,
+} from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
@@ -42,7 +50,6 @@ const tools = [
 		color: 'text-sky-400',
 		bgColor: 'bg-sky-400/10',
 	},
-	
 ]
 
 const DashboardPage = () => {

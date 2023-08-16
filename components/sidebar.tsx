@@ -5,14 +5,15 @@ import Image from 'next/image'
 import { Montserrat } from 'next/font/google'
 import { usePathname } from 'next/navigation'
 
-import logo from '@/public/logo.png'
+import { FreeCounter } from '@/components/free-counter'
+// import logo from '../../public/logo.png'
 import { cn } from '@/lib/utils'
 import {
 	Code,
 	ImageIcon,
 	LayoutDashboard,
-	MessageSquare,
 	Music,
+	MessageSquare,
 	Settings,
 	VideoIcon,
 } from 'lucide-react'
@@ -66,18 +67,29 @@ const routes = [
 	},
 ]
 
-const Sidebar = () => {
+interface SidebarProps {
+	apiLimitCount: number
+}
+
+const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 	const pathname = usePathname()
 	return (
 		<div className="space-y-4 py-4 flex flex-col h-full bg-slate-800 text-white">
 			<div className="px-3 py-2 flex-1">
-				<Link href="/dashboard" className="flex items-center pl-3 mb-14">
-					<div className="relative w-8 h-10 mr-4">
-						<Image fill alt="Logo" src={logo} />
-					</div>
-					<h1 className={cn('text-xl px-2 font-bold ', montserrat.className)}>
+				<Link
+					href="/dashboard"
+					className="flex items-center pl-3 mb-14"
+				>
+					{/* <div className="relative w-8 h-10 mr-4">
+						<Image
+							fill
+							alt="Logo"
+							src={logo}
+						/>
+					</div> */}
+					<h4 className={cn('text-xl px-2 font-bold ')}>
 						Genie AI Studio
-					</h1>
+					</h4>
 				</Link>
 				<div className="space-y-1">
 					{routes.map((route) => (
@@ -99,6 +111,9 @@ const Sidebar = () => {
 					))}
 				</div>
 			</div>
+			<FreeCounter 
+				apiLimitCount={apiLimitCount}
+			/>
 		</div>
 	)
 }
