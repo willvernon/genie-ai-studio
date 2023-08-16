@@ -6,7 +6,7 @@ import { Montserrat } from 'next/font/google'
 import { usePathname } from 'next/navigation'
 
 import { FreeCounter } from '@/components/free-counter'
-import logo from '../../public/logo.png'
+// import logo from '../../public/logo.png'
 import { cn } from '@/lib/utils'
 import {
 	Code,
@@ -80,16 +80,16 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 					href="/dashboard"
 					className="flex items-center pl-3 mb-14"
 				>
-					<div className="relative w-8 h-10 mr-4">
+					{/* <div className="relative w-8 h-10 mr-4">
 						<Image
 							fill
 							alt="Logo"
 							src={logo}
 						/>
-					</div>
-					<h1 className={cn('text-xl px-2 font-bold ', montserrat.className)}>
+					</div> */}
+					<h4 className={cn('text-xl px-2 font-bold ')}>
 						Genie AI Studio
-					</h1>
+					</h4>
 				</Link>
 				<div className="space-y-1">
 					{routes.map((route) => (
