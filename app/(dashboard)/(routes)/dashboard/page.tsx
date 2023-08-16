@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import { Card } from '@/components/ui/card'
 import {
 	ArrowRight,
@@ -54,6 +56,15 @@ const tools = [
 
 const DashboardPage = () => {
 	const router = useRouter()
+	const [isMounted, setIsMounted] = useState(false)
+
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
+
+	if (!isMounted) {
+		return null
+	}
 	return (
 		<div>
 			<div className="mb-8 space-y-4">
