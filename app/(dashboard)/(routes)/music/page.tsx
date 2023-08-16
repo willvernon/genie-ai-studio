@@ -8,7 +8,7 @@ import { set, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { ChatCompletionRequestMessage } from 'openai'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Heading } from '@/components/heading'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
@@ -24,6 +24,16 @@ function MusicPage() {
 	const proModal = useProModal()
 	const router = useRouter()
 	const [music, setMusic] = useState<string>()
+
+	const [isMounted, setIsMounted] = useState(false)
+
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
+
+	if (!isMounted) {
+		return null
+	}
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),

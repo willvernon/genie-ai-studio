@@ -8,7 +8,7 @@ import { set, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { ChatCompletionRequestMessage } from 'openai'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 
 import { Heading } from '@/components/heading'
@@ -27,6 +27,16 @@ function CodePage() {
 	const proModal = useProModal()
 	const router = useRouter()
 	const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
+
+	 const [isMounted, setIsMounted] = useState(false)
+
+		useEffect(() => {
+			setIsMounted(true)
+		}, [])
+
+		if (!isMounted) {
+			return null
+		}
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
