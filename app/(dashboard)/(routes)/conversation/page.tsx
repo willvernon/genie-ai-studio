@@ -1,41 +1,32 @@
 'use client'
 
-import axios from 'axios'
-import React from 'react'
 import * as z from 'zod'
+import axios from 'axios'
 import { MessageSquare } from 'lucide-react'
-import { set, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { useState } from 'react'
+import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { ChatCompletionRequestMessage } from 'openai'
-import { useEffect, useState } from 'react'
 
-import { Heading } from '@/components/heading'
-import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
-import { formSchema } from './constants'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Empty } from '@/components/empty/convo-empty'
-import { Loader } from '@/components/loader'
-import { cn } from '@/lib/utils'
-import { UserAvatar } from '@/components/user-avatar'
 import { BotAvatar } from '@/components/bot-avatar'
+import { Heading } from '@/components/heading'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
+import { cn } from '@/lib/utils'
+import { Loader } from '@/components/loader'
+import { UserAvatar } from '@/components/user-avatar'
+import { Empty } from '@/components/empty/convo-empty'
 import { useProModal } from '@/hooks/use-pro-modal'
 
-function ConversationPage() {
-	const proModal = useProModal()
+import { formSchema } from './constants'
+
+const ConversationPage = () => {
 	const router = useRouter()
+	const proModal = useProModal()
 	const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
-
-	const [isMounted, setIsMounted] = useState(false)
-
-	useEffect(() => {
-		setIsMounted(true)
-	}, [])
-
-	if (!isMounted) {
-		return null
-	}
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -57,12 +48,14 @@ function ConversationPage() {
 			const response = await axios.post('/api/conversation', {
 				messages: newMessages,
 			})
+			setMessages((current) => [...current, userMessage, response.data])
 
-			setMessages((current) => [...newMessages, response.data])
 			form.reset()
 		} catch (error: any) {
 			if (error?.response?.status === 403) {
 				proModal.onOpen()
+			} else {
+				toast.error('Something went wrong.')
 			}
 		} finally {
 			router.refresh()
@@ -73,17 +66,28 @@ function ConversationPage() {
 		<div>
 			<Heading
 				title="Conversation"
-				description="This is the conversation page"
+				description="Our most advanced conversation model."
 				icon={MessageSquare}
-				iconColor="text-violet-400"
-				bgColor="bg-violet-400/40"
+				iconColor="text-violet-500"
+				bgColor="bg-violet-500/10"
 			/>
 			<div className="px-4 lg:px-8">
 				<div>
 					<Form {...form}>
 						<form
 							onSubmit={form.handleSubmit(onSubmit)}
-							className="rounded-lg border-2 border-[#0000002b] shadow-md shadow-slate-500/40 w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
+							className="
+                rounded-lg 
+                border 
+                w-full 
+                p-4 
+                px-3 
+                md:px-6 
+                focus-within:shadow-sm
+                grid
+                grid-cols-12
+                gap-2
+              "
 						>
 							<FormField
 								name="prompt"
@@ -93,7 +97,7 @@ function ConversationPage() {
 											<Input
 												className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
 												disabled={isLoading}
-												placeholder="Type your message here..."
+												placeholder="How do I calculate the radius of a circle?"
 												{...field}
 											/>
 										</FormControl>
@@ -102,7 +106,9 @@ function ConversationPage() {
 							/>
 							<Button
 								className="col-span-12 lg:col-span-2 w-full"
+								type="submit"
 								disabled={isLoading}
+								size="icon"
 							>
 								Generate
 							</Button>
@@ -111,7 +117,7 @@ function ConversationPage() {
 				</div>
 				<div className="space-y-4 mt-4">
 					{isLoading && (
-						<div className="p-8 rounded-lg w-full flex items-center justify-center bg-black/20">
+						<div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
 							<Loader />
 						</div>
 					)}
@@ -125,12 +131,12 @@ function ConversationPage() {
 								className={cn(
 									'p-8 w-full flex items-start gap-x-8 rounded-lg',
 									message.role === 'user'
-										? 'bg-white border border-black/30'
-										: 'bg-black/20'
+										? 'bg-white border border-black/10'
+										: 'bg-muted'
 								)}
 							>
 								{message.role === 'user' ? <UserAvatar /> : <BotAvatar />}
-								<p className="text-sm my-auto">{message.content}</p>
+								<p className="text-sm">{message.content}</p>
 							</div>
 						))}
 					</div>
