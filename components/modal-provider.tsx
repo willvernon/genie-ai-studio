@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
-import { ProModal } from "./pro-modal"
+import { ProModal } from '@/components/pro-modal'
 
-export const ModalPorvider = () => {
+export const ModalProvider = () => {
 	const [isMounted, setIsMounted] = useState(false)
 
 	useEffect(() => {

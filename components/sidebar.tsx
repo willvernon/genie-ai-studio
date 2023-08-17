@@ -3,119 +3,118 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Montserrat } from 'next/font/google'
-import { usePathname } from 'next/navigation'
-
-import { FreeCounter } from '@/components/free-counter'
-// import logo from '../../public/logo.png'
-import { cn } from '@/lib/utils'
 import {
 	Code,
 	ImageIcon,
 	LayoutDashboard,
-	Music,
 	MessageSquare,
+	Music,
 	Settings,
 	VideoIcon,
 } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
-const montserrat = Montserrat({
-	weight: '600',
-	subsets: ['latin'],
-})
+import { cn } from '@/lib/utils'
+import { FreeCounter } from '@/components/free-counter'
+
+const poppins = Montserrat({ weight: '600', subsets: ['latin'] })
 
 const routes = [
 	{
 		label: 'Dashboard',
 		icon: LayoutDashboard,
 		href: '/dashboard',
-		color: 'text-slate-400',
+		color: 'text-sky-500',
 	},
 	{
 		label: 'Conversation',
 		icon: MessageSquare,
 		href: '/conversation',
-		color: 'text-violet-400',
+		color: 'text-violet-500',
 	},
 	{
 		label: 'Image Generation',
 		icon: ImageIcon,
-		href: '/image',
 		color: 'text-pink-700',
+		href: '/image',
 	},
 	{
 		label: 'Video Generation',
 		icon: VideoIcon,
+		color: 'text-orange-700',
 		href: '/video',
-		color: 'text-orange-400',
 	},
 	{
 		label: 'Music Generation',
 		icon: Music,
+		color: 'text-emerald-500',
 		href: '/music',
-		color: 'text-emerald-400',
 	},
 	{
 		label: 'Code Generation',
 		icon: Code,
+		color: 'text-green-700',
 		href: '/code',
-		color: 'text-sky-400',
 	},
-	// {
-	// 	label: 'Settings',
-	// 	icon: Settings,
-	// 	href: '/settings',
-	// },
+	{
+		label: 'Settings',
+		icon: Settings,
+		href: '/settings',
+	},
 ]
 
-interface SidebarProps {
+export const Sidebar = ({
+	apiLimitCount = 0,
+	isPro = false,
+}: {
 	apiLimitCount: number
-}
-
-const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
+	isPro: boolean
+}) => {
 	const pathname = usePathname()
+
 	return (
-		<div className="space-y-4 py-4 flex flex-col h-full bg-slate-800 text-white">
-			<div className="px-3 py-2 flex-1">
+		<div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
+			<div className="px-3 py-2 flex-1 ">
 				<Link
 					href="/dashboard"
 					className="flex items-center pl-3 mb-14"
 				>
-					{/* <div className="relative w-8 h-10 mr-4">
+					{/* <div className="relative h-8 w-8 mr-4">
 						<Image
-							fill
+							width={200}
+							height={200}
 							alt="Logo"
-							src={logo}
+							src="/logo.png"
 						/>
 					</div> */}
-					<h4 className={cn('text-xl px-2 font-bold ')}>
-						Genie AI Studio
+					<h4 className={cn('text-2xl font-bold')}>
+						Genius AI Studio
 					</h4>
 				</Link>
 				<div className="space-y-1">
 					{routes.map((route) => (
 						<Link
-							href={route.href}
 							key={route.href}
+							href={route.href}
 							className={cn(
 								'text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition',
 								pathname === route.href
-									? 'text-white bg-slate-200/10'
-									: 'text-zinc-400 bg-transparent'
+									? 'text-white bg-white/10'
+									: 'text-zinc-400'
 							)}
 						>
-							<div className="flex items-center space-x-3 px-3 py-2 rounded-md  cursor-pointer">
-								<route.icon className={cn('w-5 h-5 mr-3', route.color)} />
+							<div className="flex items-center flex-1">
+								<route.icon className={cn('h-5 w-5 mr-3', route.color)} />
 								{route.label}
 							</div>
 						</Link>
 					))}
 				</div>
 			</div>
-			<FreeCounter 
+			<FreeCounter
 				apiLimitCount={apiLimitCount}
+				isPro={isPro}
 			/>
 		</div>
 	)
 }
-
-export default Sidebar

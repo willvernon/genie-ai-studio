@@ -7,7 +7,9 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from 'next/font/google'
 
 import NavBar from '@/components/landing/NavBar'
-import { ModalPorvider } from '@/components/modal-provider'
+import { ToasterProvider } from '@/components/toaster-provider'
+import { ModalProvider } from '@/components/modal-provider'
+import { CrispProvider } from '@/components/crisp-provider'
 
 const graphik = localFont({
 	src: [
@@ -47,10 +49,13 @@ export default function RootLayout({
 					graphik.variable
 				)}
 			>
+				<CrispProvider />
 				<body className="antialiased max-w-5xl mb-40 flex flex-col md:flex-row my-4">
+					<ToasterProvider />
+
 					<main className="flex-auto min-w-0  mt-6 flex flex-col px-2 md:px-0">
 						<NavBar />
-						<ModalPorvider />
+						<ModalProvider />
 						{children}
 					</main>
 				</body>
