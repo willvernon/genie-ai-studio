@@ -24,45 +24,45 @@ import { useProModal } from '@/hooks/use-pro-modal'
 import { formSchema } from './constants'
 
 const ConversationPage = () => {
-	const router = useRouter()
-	const proModal = useProModal()
-	const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
+  const router = useRouter()
+  const proModal = useProModal()
+  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
-		defaultValues: {
-			prompt: '',
-		},
-	})
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      prompt: ''
+    }
+  })
 
-	const isLoading = form.formState.isSubmitting
+  const isLoading = form.formState.isSubmitting
 
-	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		try {
-			const userMessage: ChatCompletionRequestMessage = {
-				role: 'user',
-				content: values.prompt,
-			}
-			const newMessages = [...messages, userMessage]
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const userMessage: ChatCompletionRequestMessage = {
+        role: 'user',
+        content: values.prompt
+      }
+      const newMessages = [...messages, userMessage]
 
-			const response = await axios.post('/api/conversation', {
-				messages: newMessages,
-			})
-			setMessages((current) => [...current, userMessage, response.data])
+      const response = await axios.post('/api/conversation', {
+        messages: newMessages
+      })
+      setMessages(current => [...current, userMessage, response.data])
 
-			form.reset()
-		} catch (error: any) {
-			if (error?.response?.status === 403) {
-				proModal.onOpen()
-			} else {
-				toast.error('Something went wrong.')
-			}
-		} finally {
-			router.refresh()
-		}
-	}
+      form.reset()
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen()
+      } else {
+        toast.error('Something went wrong.')
+      }
+    } finally {
+      router.refresh()
+    }
+  }
 
-	return (
+  return (
     <div>
       <Heading
         title="Conversation"
@@ -92,7 +92,7 @@ const ConversationPage = () => {
               <FormField
                 name="prompt"
                 render={({ field }) => (
-                  <FormItem className="col-span-12 lg:col-span-10">
+                  <FormItem className="col-span-12 lg:col-span-10 text-slate-600">
                     <FormControl className="m-0 p-0">
                       <Input
                         className="border-1 border-slate-200 p-3 border outline-none focus-visible:ring-0 focus-visible:ring-transparent"
@@ -115,28 +115,28 @@ const ConversationPage = () => {
             </form>
           </Form>
         </div>
-        <div className="space-y-4 mt-4">
+        <div className="space-y-4 mt-4 ">
           {isLoading && (
-            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted ">
               <Loader />
             </div>
           )}
           {messages.length === 0 && !isLoading && (
             <Empty label="No conversation started." />
           )}
-          <div className="flex flex-col-reverse gap-y-4">
+          <div className="flex flex-col-reverse gap-y-4 ">
             {messages.map(message => (
               <div
                 key={message.content}
                 className={cn(
-                  'p-8 w-full flex items-start gap-x-8 rounded-lg',
+                  'p-8 w-full flex items-start gap-x-8  rounded-lg',
                   message.role === 'user'
-                    ? 'bg-white border border-black/10'
+                    ? 'bg-white  border border-black/10'
                     : 'bg-muted'
                 )}
               >
                 {message.role === 'user' ? <UserAvatar /> : <BotAvatar />}
-                <p className="text-sm">{message.content}</p>
+                <p className="text-sm text-slate-600">{message.content}</p>
               </div>
             ))}
           </div>

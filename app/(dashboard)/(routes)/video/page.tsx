@@ -61,7 +61,7 @@ const VideoPage = () => {
         iconColor="text-orange-700"
         bgColor="bg-orange-700/10"
       />
-      <div className="px-4 lg:px-8">
+      <div className="px-4 lg:px-8 text-slate-600">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
