@@ -32,7 +32,7 @@ function LandingHero() {
           </div>
         </div>
         <div className=" mx-auto md:mt-0">
-          <div className="w-full mx-20 my-2">
+          <div className="w-full mx-10 my-2">
             <span className="font-bold text-lg dark:text-white text-[#161616]">
               Our Current AI Tools
             </span>
