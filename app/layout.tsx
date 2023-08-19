@@ -43,9 +43,9 @@ export default function RootLayout({
 	return (
 	<ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <CrispProvider />
+        {/* <CrispProvider /> */}
         <body className={clsx(
-					'text-white bg-white ',
+					'text-white bg-white',
 					graphik.variable
 				)}>
           <ToasterProvider />

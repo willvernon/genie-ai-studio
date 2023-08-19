@@ -5,7 +5,7 @@ import axios from 'axios'
 import Image from 'next/image'
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Download, ImageIcon } from 'lucide-react'
+import { Download, ImageIcon, WandIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
@@ -18,60 +18,60 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Loader } from '@/components/loader'
 import { ImageEmpty } from '@/components/empty/image-empty'
 import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from '@/components/ui/select'
 import { useProModal } from '@/hooks/use-pro-modal'
 
 import { amountOptions, formSchema, resolutionOptions } from './constants'
 
-const PhotoPage = () => {
-	const proModal = useProModal()
-	const router = useRouter()
-	const [photos, setPhotos] = useState<string[]>([])
+const PhotoEnhancePage = () => {
+  const proModal = useProModal()
+  const router = useRouter()
+  const [photos, setPhotos] = useState<string[]>([])
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
-		defaultValues: {
-			prompt: '',
-			amount: '1',
-			resolution: '512x512',
-		},
-	})
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      prompt: '',
+      amount: '1',
+      resolution: '512x512'
+    }
+  })
 
-	const isLoading = form.formState.isSubmitting
+  const isLoading = form.formState.isSubmitting
 
-	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		try {
-			setPhotos([])
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setPhotos([])
 
-			const response = await axios.post('/api/image', values)
+      const response = await axios.post('/api/image', values)
 
-			const urls = response.data.map((image: { url: string }) => image.url)
+      const urls = response.data.map((image: { url: string }) => image.url)
 
-			setPhotos(urls)
-		} catch (error: any) {
-			if (error?.response?.status === 403) {
-				proModal.onOpen()
-			} else {
-				toast.error('Something went wrong.')
-			}
-		} finally {
-			router.refresh()
-		}
-	}
+      setPhotos(urls)
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen()
+      } else {
+        toast.error('Something went wrong.')
+      }
+    } finally {
+      router.refresh()
+    }
+  }
 
-	return (
+  return (
     <div>
       <Heading
-        title="Image Generation"
+        title="Photo Enhancement"
         description="Turn your prompt into an image."
-        icon={ImageIcon}
+        icon={WandIcon}
         iconColor="text-pink-700"
-        bgColor="bg-pink-700/10"
+        bgColor="bg-pink-700/20"
       />
       <div className="px-4 lg:px-8">
         <Form {...form}>
@@ -87,18 +87,18 @@ const PhotoPage = () => {
               focus-within:shadow-sm
               grid
               grid-cols-12
-              gap-2
+              gap-2 text-slate-600
             "
           >
             <FormField
               name="prompt"
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-6 text-slate-600">
-                  <FormControl className="m-0 p-0">
+                  <FormControl className="m-0 p-0 text-slate-600">
                     <Input
-                      className="border-1 border-slate-200 p-3 border  outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                      className="border-1 border-slate-200 p-3 border outline-none focus-visible:ring-0 focus-visible:ring-transparent text-slate-600"
                       disabled={isLoading}
-                      placeholder="A picture of a horse in Swiss alps"
+                      placeholder="Type your propmt here..."
                       {...field}
                     />
                   </FormControl>
@@ -214,4 +214,4 @@ const PhotoPage = () => {
   )
 }
 
-export default PhotoPage
+export default PhotoEnhancePage

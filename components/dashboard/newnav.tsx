@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button'
 
 const navItems = {
   '/': {
-    name: 'home'
+    name: 'landing'
   },
   '/models': {
     name: 'models'
@@ -22,7 +22,7 @@ const navItems = {
   }
 }
 
-export default function Navbar() {
+export default function NewNavbar() {
   const { isSignedIn } = useAuth()
   let pathname = usePathname() || '/'
   // if (pathname.includes('/blog/')) {
@@ -30,7 +30,7 @@ export default function Navbar() {
   // }
 
   return (
-    <aside className="md:ml-[12px] mb-16  tracking-tight">
+    <aside className="md:ml-[12px] md:mb-16 mb-8 tracking-tight">
       <div className="lg:sticky lg:top-20">
         <LayoutGroup>
           <nav
@@ -51,7 +51,7 @@ export default function Navbar() {
                       }
                     )}
                   >
-                    <span className="relative py-1 px-2">
+                    <span className="relative py-1 px-2 md:text-xl text-bold">
                       {name}
                       {path === pathname ? (
                         <motion.div
@@ -68,13 +68,9 @@ export default function Navbar() {
                   </Link>
                 )
               })}
-              <div className="block md:hidden pl-4 ">
+              <div className="pl-4 ">
                 <UserButton afterSignOutUrl="/" />
               </div>
-            </div>
-
-            <div className="hidden md:block lg:absolute lg:right-0 space-x-0 lg:px-10 mt-4 items-centers text-neutral-700">
-              <UserButton afterSignOutUrl="/" />
             </div>
           </nav>
         </LayoutGroup>
