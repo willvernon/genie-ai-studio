@@ -4,7 +4,7 @@ export default function Footer() {
 	return (
 		<div>
 			<div className="prose prose-neutral dark:prose-invert border border-transparent ">
-				<ul className="flex flex-col md:flex-row mt-8 space-x-0 md:space-x-4 space-y-2 md:space-y-0 font-sm text-neutral-600 dark:text-neutral-300 text-center justify-center ">
+				<ul className="flex flex-col ml-20 md:ml-0 mb-12 md:flex-row mt-8 space-x-0 md:space-x-4 space-y-2 md:space-y-0 font-sm text-neutral-600 dark:text-neutral-300 text-center justify-center">
 					<li>
 						<a
 							className="flex items-center hover:text-neutral-800 dark:hover:text-neutral-100 transition-all"
