@@ -41,25 +41,18 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<ClerkProvider>
-			<html
-				lang="en"
-				className={clsx(
-					'text-white bg-white  dark:text-white dark:bg-[#161616] ',
+	<ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <CrispProvider />
+        <body className={clsx(
+					'text-white bg-white ',
 					graphik.variable
-				)}
-			>
-				<CrispProvider />
-				<body className="antialiased max-w-5xl mb-40 flex flex-col md:flex-row my-4">
-					<ToasterProvider />
-
-					<main className="flex-auto min-w-0  mt-6 flex flex-col px-2 md:px-0">
-						<NavBar />
-						<ModalProvider />
-						{children}
-					</main>
-				</body>
-			</html>
-		</ClerkProvider>
+				)}>
+          <ToasterProvider />
+          <ModalProvider />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
 	)
 }
