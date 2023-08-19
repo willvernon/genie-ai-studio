@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import unicorn from '@/public/landing/unicorn.png'
@@ -9,7 +10,9 @@ import cat from '@/public/landing/cat.png'
 export default function SmPhotoGrid() {
   return (
     <section className="mt-20">
-      <h4 className="mt-12 mb-4 mx-auto text-center text-xl font-bold tracking-relaxed text-black">Examples</h4>
+      <h4 className="mt-12 mb-4 mx-auto text-center text-xl font-bold tracking-relaxed text-black">
+        Examples
+      </h4>
       <div className="prose prose-neutral dark:prose-invert border border-transparent text-center text-black mb-6 mx-8">
         <p>
           Genie AI Studio brings the newest features of AI assistance to you
