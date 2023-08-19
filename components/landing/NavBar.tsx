@@ -69,10 +69,10 @@ export default function Navbar() {
                 )
               })}
             </div>
-            <div className="lg:absolute lg:right-0 hidden space-x-0 lg:px-10 mt-4 items-centers text-neutral-700">
+
+            <div className="lg:absolute lg:right-0 space-x-0 lg:px-10 mt-4 items-centers text-neutral-700">
               <UserButton afterSignOutUrl="/" />
             </div>
-            
           </nav>
         </LayoutGroup>
       </div>

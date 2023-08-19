@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import unicorn from '@/public/landing/unicorn.png'
@@ -6,12 +7,11 @@ import clear from '@/public/landing/clear.jpg'
 import audio from '@/public/landing/audio.png'
 import cat from '@/public/landing/cat.png'
 
-
 export default function PhotoGrid() {
   return (
     <section className="mt-20">
       <h3 className="my-12 mx-auto">Genie AI Studio</h3>
-      <div className=" columns-3 gap-4 my-8 md:mb-36">
+      <div className=" columns-3 gap-4 my-8 md:mb-20">
         <div className="relative h-40 mb-0 md:mb-4 border border-transparent ">
           <Image
             alt="unicorn"
@@ -59,10 +59,8 @@ export default function PhotoGrid() {
           Genie AI Studio brings the newest features of AI assistance to you
           with Genie AI Studio
           <br />
-          <p className="mx-4">
-            your all-in-one personal assistant for AI tools and resources.
-            Explore all kinds of new Intelligent capabilities:
-          </p>
+          your all-in-one personal assistant for AI tools and resources. Explore
+          all kinds of new Intelligent capabilities:
         </p>
       </div>
     </section>
