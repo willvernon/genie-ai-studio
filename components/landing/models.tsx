@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import React from 'react'
 import gfpgan from '@/public/models/gfpgan.png'
