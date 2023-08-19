@@ -73,7 +73,7 @@ const PhotoPage = () => {
         iconColor="text-pink-700"
         bgColor="bg-pink-700/10"
       />
-      <div className="px-4 lg:px-8">
+      <div className="px-4 lg:px-8 text-slate-600">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

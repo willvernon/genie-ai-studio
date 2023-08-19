@@ -62,7 +62,7 @@ const MusicPage = () => {
         iconColor="text-emerald-500"
         bgColor="bg-emerald-500/10"
       />
-      <div className="px-4 lg:px-8">
+      <div className="px-4 lg:px-8 text-slate-600">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
