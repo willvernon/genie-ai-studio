@@ -5,11 +5,13 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 
 import NavBar from '@/components/landing/NavBar'
 import { ToasterProvider } from '@/components/toaster-provider'
 import { ModalProvider } from '@/components/modal-provider'
 import { CrispProvider } from '@/components/crisp-provider'
+import './globals.css'
 
 const graphik = localFont({
 	src: [
@@ -30,6 +32,7 @@ const graphik = localFont({
 
 const inter = Inter({ subsets: ['latin'] })
 
+
 export const metadata: Metadata = {
 	title: 'Genie AI',
 	description: 'AI Platform',
@@ -41,18 +44,19 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-	<ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
+    <ClerkProvider>
+      <html
+        lang="en"
+        suppressHydrationWarning
+      >
         {/* <CrispProvider /> */}
-        <body className={clsx(
-					'text-white bg-white',
-					graphik.variable
-				)}>
+        <body className={clsx('text-white bg-white', graphik.variable)}>
           <ToasterProvider />
           <ModalProvider />
           {children}
         </body>
+        <Analytics />
       </html>
     </ClerkProvider>
-	)
+  )
 }
