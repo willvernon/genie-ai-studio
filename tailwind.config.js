@@ -24,7 +24,8 @@ module.exports = {
       }
     },
     fontFamily: {
-      span: ['orbitron-black']
+      span: ['orbitron-black'],
+      h4: ['orbitron-regular'],
     },
     extend: {
       colors: {
