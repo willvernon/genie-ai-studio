@@ -119,9 +119,9 @@ h3 {
 
 h4 {
   font-size: 1.25rem;
-  font-family: 'Orbitron';
+  font-family: var(--font-orbitron);
 }
 
 span {
-  font-family: 'Orbitron';
+  font-family: var(--font-orbitron);
 }
