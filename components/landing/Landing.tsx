@@ -4,8 +4,12 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@clerk/nextjs'
+import { Orbitron } from 'next/font/google'
+
 
 import { Button } from '../ui/button'
+
+const orbitron = Orbitron({ subsets: ['latin'] })
 
 function LandingHero() {
   const { isSignedIn } = useAuth()
