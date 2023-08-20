@@ -38,6 +38,7 @@ export const metadata: Metadata = {
 	description: 'AI Platform',
 }
 
+
 export default function RootLayout({
 	children,
 }: {
