@@ -1,5 +1,6 @@
 import Landing from '@/components/landing/Landing'
 
+
 import Footer from '@/components/landing/footer'
 import Navbar from '@/components/landing/NavBar'
 import PhotoGrid from '@/components/landing/PhotoGrid'
