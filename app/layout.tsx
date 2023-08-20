@@ -30,6 +30,28 @@ const graphik = localFont({
 	display: 'swap',
 })
 
+const orbitron = localFont({
+  src: [
+    {
+      path: '../public/fonts/Orbitron-Regular.ttf',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: '../public/fonts/Orbitron-bold.ttf',
+      weight: '600',
+      style: 'bold'
+    },
+		{
+      path: '../public/fonts/Orbitron-black.ttf',
+      weight: '900',
+      style: 'black'
+    }
+  ],
+  variable: '--font-orbitron',
+  display: 'swap'
+})
+
 const inter = Inter({ subsets: ['latin'] })
 
 

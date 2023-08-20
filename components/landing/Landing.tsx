@@ -4,8 +4,32 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@clerk/nextjs'
+import clsx from 'clsx'
 
 import { Button } from '../ui/button'
+
+import localFont from 'next/font/local'
+const orbitron = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Orbitron-Regular.ttf',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: '../../public/fonts/Orbitron-bold.ttf',
+      weight: '600',
+      style: 'bold'
+    },
+    {
+      path: '../../public/fonts/Orbitron-black.ttf',
+      weight: '900',
+      style: 'black'
+    }
+  ],
+  variable: '--font-orbitron',
+  display: 'swap'
+})
 
 function LandingHero() {
   const { isSignedIn } = useAuth()
@@ -17,7 +41,12 @@ function LandingHero() {
             Genie
           </span>
           <br />
-          <span className="dark:text-white text-[#161616] text-7xl  md:text-6xl lg:text-8xl  w-full  font-black">
+          <span
+            className={clsx(
+              'dark:text-white text-[#161616] text-7xl  md:text-6xl lg:text-8xl  w-full  font-black',
+              orbitron.variable
+            )}
+          >
             AI Studio
           </span>
           <div className="">
