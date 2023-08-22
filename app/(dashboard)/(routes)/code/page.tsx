@@ -25,43 +25,43 @@ import { useProModal } from '@/hooks/use-pro-modal'
 import { formSchema } from './constants'
 
 const CodePage = () => {
-	const router = useRouter()
-	const proModal = useProModal()
-	const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
+  const router = useRouter()
+  const proModal = useProModal()
+  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
-		defaultValues: {
-			prompt: '',
-		},
-	})
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      prompt: ''
+    }
+  })
 
-	const isLoading = form.formState.isSubmitting
+  const isLoading = form.formState.isSubmitting
 
-	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		try {
-			const userMessage: ChatCompletionRequestMessage = {
-				role: 'user',
-				content: values.prompt,
-			}
-			const newMessages = [...messages, userMessage]
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const userMessage: ChatCompletionRequestMessage = {
+        role: 'user',
+        content: values.prompt
+      }
+      const newMessages = [...messages, userMessage]
 
-			const response = await axios.post('/api/code', { messages: newMessages })
-			setMessages((current) => [...current, userMessage, response.data])
+      const response = await axios.post('/api/code', { messages: newMessages })
+      setMessages(current => [...current, userMessage, response.data])
 
-			form.reset()
-		} catch (error: any) {
-			if (error?.response?.status === 403) {
-				proModal.onOpen()
-			} else {
-				toast.error('Something went wrong.')
-			}
-		} finally {
-			router.refresh()
-		}
-	}
+      form.reset()
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen()
+      } else {
+        toast.error('Something went wrong.')
+      }
+    } finally {
+      router.refresh()
+    }
+  }
 
-	return (
+  return (
     <div>
       <Heading
         title="Code Generation"
